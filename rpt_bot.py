@@ -8,7 +8,7 @@ class RPT_Bot():
 
     def __init__(self):
         # base telegram api url with
-        self.url = 'https://api.telegram.org/bot<insert you bot api key here>/'
+        self.url = 'https://api.telegram.org/bot<insert bot api key info here>/'
         # This is what we use so in our loop we don't spam chat over and over, used for long polling
         self.update_id_number = 1
 
@@ -63,9 +63,6 @@ class RPT_Bot():
         # Lets compare against the list of commands we support
         if msg_text == '/price':
             self.price_bot_command(chat_id=chat_id)
-        # either its a command that we don't support or just text
-        elif msg_text == '/marty':
-            self.marty_bot_command(chat_id=chat_id)
         else:
             print('i hit the else rule for {msg}'.format(msg=msg_text))
 
@@ -99,15 +96,6 @@ class RPT_Bot():
             self.post_to_chat(chat_id=chat_id, message=message)
         else:
             print('Something bad happened, got a code {code}'.format(code=results.status_code))
-
-    def marty_bot_command(self, chat_id='1234'):
-        '''
-        Have to give credit where its due...
-        :param chat_id: we need the chat id to post a message
-        :return:
-        '''
-        marty = 'FUCKIN MAAAAAHHHHTY!!!!!!'
-        self.post_to_chat(chat_id=chat_id, message=marty)
 
     def post_to_chat(self, chat_id='1234', message='nodicecowboy'):
         '''
